@@ -9,7 +9,7 @@ class Solution
             const auto &[minV, maxV] = minmax_element(nums.begin(), nums.end());
             const int range = *maxV - *minV;
             const int bucket_size = max(1, range / (n - 1));	// minimum possible maximum gap, to prove it, refer to[1]
-            const int bucket_num = range / bucket_size + 1;	// minimum bucket number to hold ALL the array items 
+            const int bucket_num = (range / bucket_size) + 1;	// minimum bucket number to hold ALL the array items 
             vector<int> bucket_mins(bucket_num, INT_MAX);
             vector<int> bucket_maxs(bucket_num, INT_MIN);
             for (auto &num: nums)
