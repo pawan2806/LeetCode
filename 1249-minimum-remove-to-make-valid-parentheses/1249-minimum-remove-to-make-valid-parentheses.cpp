@@ -45,6 +45,7 @@ class Solution
                 }
             }
             unordered_map<int,int> mp;
+            int i=n-1;
             while(!stk.empty()){
                 pair<char, int> pair1 =stk.top();
                 mp[pair1.second]++;
