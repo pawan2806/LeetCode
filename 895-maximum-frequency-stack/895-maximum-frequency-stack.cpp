@@ -2,8 +2,8 @@ class FreqStack
 {
     public:
 
-        map<int, stack < int>> freqStack;
-        map<int, int> freqMap;
+        unordered_map<int, stack < int>> freqStack;
+        unordered_map<int, int> freqMap;
         int maxcount = 0;
         FreqStack() {}
 
