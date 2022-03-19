@@ -1,10 +1,7 @@
 class FreqStack
 {
     public:
-       	// map<int, vector < int>> m;
-       	// stack<int> s;
-       	// map<int, int> mfreq;
-       	// int count = 0;
+
         map<int, stack < int>> freqStack;
         map<int, int> freqMap;
         int maxcount = 0;
@@ -15,19 +12,16 @@ class FreqStack
         freqMap[val]++;
         maxcount = max(maxcount, freqMap[val]);
         freqStack[freqMap[val]].push(val);
-
     }
 
     int pop()
     {
-        
-       int ret = freqStack[maxcount].top();
+        int ret = freqStack[maxcount].top();
         freqStack[maxcount].pop();
         freqMap[ret]--;
-        if(freqStack[maxcount].empty())
+        if (freqStack[maxcount].empty())
             maxcount--;
         return ret;
-
     }
 };
 
