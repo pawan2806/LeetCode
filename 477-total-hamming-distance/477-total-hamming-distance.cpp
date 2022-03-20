@@ -4,22 +4,7 @@ class Solution
 
         int totalHammingDistance(vector<int> &nums)
         {
-
             int n = nums.size();
-            vector<vector < int>> ans(n);
-            for (int i = 0; i < n; i++)
-            {
-                int x = nums[i];
-                vector<int> gg(32, 0);
-                int j = 0;
-                while (x > 0)
-                {
-                    gg[j] = x % 2;
-                    j++;
-                    x = x / 2;
-                }
-                ans[i] = gg;
-            }
             long long int count = 0;
             for (int i = 0; i < 32; i++)
             {
@@ -27,8 +12,8 @@ class Solution
                 long long int count1 = 0;
                 for (int j = 0; j < n; j++)
                 {
-                    int x=nums[j];
-                    if (x & (1 << i))
+                    int x = nums[j];
+                    if (x &(1 << i))
                     {
                         count1++;
                     }
