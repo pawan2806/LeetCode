@@ -9,9 +9,6 @@ class Solution
             if(y%2==0){
                 return 1+brokenCalc(x, y/2);
             }
-           
-           
-
             return 1+brokenCalc(x, y+1);
         }
 };
