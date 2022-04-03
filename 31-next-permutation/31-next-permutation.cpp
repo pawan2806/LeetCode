@@ -23,6 +23,7 @@ class Solution
             {
                 if ((nums[j] - num) > 0 && (nums[j] - num) < min)
                 {
+                    
                     index = j;
                 }
             }
