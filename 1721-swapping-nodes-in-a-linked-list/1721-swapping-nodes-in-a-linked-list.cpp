@@ -15,19 +15,19 @@ class Solution
         {
             ListNode *kfromstart = head, *kfromend = head, *temp = head;
             int x = k - 1;
-            while (x)	// find the kth element from start
+            while (x)
             {
                 kfromstart = kfromstart->next;
                 temp = temp->next;
                 x--;
             }
 
-            while (temp->next)	// now go till end to find kth element from end
+            while (temp->next)
             {
                 temp = temp->next;
                 kfromend = kfromend->next;
             }
-           	//swap kth element from start &kth element from end
+           	
             swap(kfromend->val, kfromstart->val);
             return head;
         }
