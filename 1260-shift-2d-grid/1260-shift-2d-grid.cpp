@@ -1,11 +1,7 @@
 class Solution
 {
     public:
-    void rev(int st, int end,vector<vector < int>> &grid ){
-        while(st<=end){
-            swap(grid[st++], grid[end--]);
-        }
-    }
+   
         vector<vector < int>> shiftGrid(vector<vector < int>> &grid, int k)
         {
             int n = grid.size();
