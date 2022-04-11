@@ -13,20 +13,13 @@ class Solution
             vector<int> dp(n*m, -1);
             int count=0;
             k=k%(m*n);
-            if(k==0){
-                return grid;
-            }
             k=(n*m)-k;
-            if(k==0){
-                return grid;
-            }
             for(int i=0;i<n;i++){
                 for(int j=0;j<m;j++){
                     dp[count++]=grid[i][j];
                 }
             }
             count=0;
-            //k=(n*m)-k;
             reverse(dp.begin()+k, dp.end());
             reverse(dp.begin(),dp.begin()+k);
             reverse(dp.begin(),dp.end());
