@@ -1,54 +1,56 @@
 /**
  *Definition for a binary tree node.
  *struct TreeNode {
- *    int val;
- *    TreeNode * left;
- *    TreeNode * right;
- *    TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *   int val;
+ *   TreeNode * left;
+ *   TreeNode * right;
+ *   TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  *};
  */
 class Solution
 {
     public:
         vector<int> ans;
-    int index=0;
-    unordered_map<int,int> m;
-    void helper(TreeNode *root)
+    int index = 0;
+    unordered_map<int, int> m;
+    void inorder(TreeNode *root)
     {
         if (!root)
         {
-            return ;
+            return;
         }
-        helper(root->left);
-        m[root->val]=index;
+        inorder(root->left);
+        m[root->val] = index;
         index++;
         ans.push_back(root->val);
-        helper(root->right);
-        
+        inorder(root->right);
     }
-    
-    void helper2(TreeNode* root){
+
+    // this is where the actual conversion happens
+    void convertBSTUtil(TreeNode *root)
+    {
         if (!root)
         {
-            return ;
+            return;
         }
-        int gg=m[root->val];
-        root->val=root->val+ans[ans.size()-1]-ans[gg];
-        
-        helper2(root->right);
-        helper2(root->left);
-        
+        int gg = m[root->val];
+        root->val = root->val + ans[ans.size() - 1] - ans[gg];
+
+        convertBSTUtil(root->right);
+        convertBSTUtil(root->left);
     }
     TreeNode* convertBST(TreeNode *root)
     {
-        
-        helper(root);
-        for(int i=1;i<ans.size();i++){
-            ans[i]=ans[i]+ans[i-1];
+
+        inorder(root);
+        // now making prefix array
+        for (int i = 1; i < ans.size(); i++)
+        {
+            ans[i] = ans[i] + ans[i - 1];
         }
-        helper2(root);
+        convertBSTUtil(root);
         return root;
     }
 };
