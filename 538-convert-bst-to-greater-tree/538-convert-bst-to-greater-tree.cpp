@@ -13,6 +13,8 @@ class Solution
 {
     public:
         vector<int> ans;
+    int index=0;
+    unordered_map<int,int> m;
     void helper(TreeNode *root)
     {
         if (!root)
@@ -20,6 +22,8 @@ class Solution
             return ;
         }
         helper(root->left);
+        m[root->val]=index;
+        index++;
         ans.push_back(root->val);
         helper(root->right);
         
@@ -30,15 +34,9 @@ class Solution
         {
             return ;
         }
+        int gg=m[root->val];
+        root->val=root->val+ans[ans.size()-1]-ans[gg];
         
-        int i=0, sum=0;
-        while(i<ans.size() && ans[i]<root->val){
-            i++;
-        }
-        for(;i<ans.size();i++){
-            sum+=ans[i];
-        }
-        root->val=sum;
         helper2(root->right);
         helper2(root->left);
         
@@ -47,6 +45,9 @@ class Solution
     {
         
         helper(root);
+        for(int i=1;i<ans.size();i++){
+            ans[i]=ans[i]+ans[i-1];
+        }
         helper2(root);
         return root;
     }
