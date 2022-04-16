@@ -19,9 +19,10 @@ class Solution
         {
             return ;
         }
+        helper(root->left);
         ans.push_back(root->val);
         helper(root->right);
-        helper(root->left);
+        
     }
     
     void helper2(TreeNode* root){
@@ -46,7 +47,6 @@ class Solution
     {
         
         helper(root);
-        sort(ans.begin(), ans.end());
         helper2(root);
         return root;
     }
