@@ -13,7 +13,7 @@ class Solution {
 public:
     int i=1, gg=-1;
     void ez(TreeNode* root, int k) {
-        if(!root){
+        if(!root || i>k){
             return;
         }
         kthSmallest(root->left, k);
