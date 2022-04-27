@@ -36,12 +36,12 @@ public:
         
         for(int i = 0; i < n; i ++) sort(g[i].begin(), g[i].end()); // Sort each group
         
-        vector<int> in(n);
+        vector<int> in(n,0);
         vector<char> ans;
         
         for(int i = 0; i < n; i ++) {
             int c = f(p, i);
-            ans.push_back(g[c][in[c] ++]); // Add each group back into answer
+            ans.push_back(g[c][in[c]++]); // Add each group back into answer
         }
         
         return string(ans.begin(), ans.end());
