@@ -1,36 +1,36 @@
 class Solution {
+    // if whole array is sorted, this will take N+(N-1)+(N-2)... = O(N^2)
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        int left = 0, right = nums.size() - 1, kth;
-        while (true) {
-            int idx = partition(nums, left, right);
-            if (idx == k - 1) {
-                kth = nums[idx];
-                break;
-            }
-            if (idx < k - 1) {
-                left = idx + 1;
+        int left = 0;
+        int right = nums.size()-1;
+        int pivotIdx = nums.size();
+        
+        while (pivotIdx != nums.size()-k) {
+            pivotIdx = partition(nums, left, right);
+            if (pivotIdx < nums.size()-k) {
+                left = pivotIdx+1;
             } else {
-                right = idx - 1;
+                right = pivotIdx-1;
             }
         }
-        return kth;
+        return nums[pivotIdx];
     }
 private:
     int partition(vector<int>& nums, int left, int right) {
-        int pivot = nums[left], l = left + 1, r = right;
-        while (l <= r) {
-            if (nums[l] < pivot && nums[r] > pivot) {
-                swap(nums[l++], nums[r--]);
-            }
-            if (nums[l] >= pivot) {
-                l++;
-            }
-            if (nums[r] <= pivot) {
-                r--;
+        // 1. we take the middle element
+        int pivot_idx = right;
+        int pivot_val = nums[pivot_idx];
+        // 3. we swap all elements smaller than pivot to the left
+        int store_idx = left;
+        for (int i = left; i < right; ++i) {
+            if (nums[i] < pivot_val) {
+                swap(nums[i], nums[store_idx]);
+                store_idx++;
             }
         }
-        swap(nums[left], nums[r]);
-        return r;
+        // 4. move pivot back to its place
+        swap(nums[store_idx], nums[pivot_idx]);
+        return store_idx;
     }
 };
