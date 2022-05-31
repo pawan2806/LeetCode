@@ -7,7 +7,7 @@ public:
         if(s.length()<k){
             return false;
         }
-        for(int i=0;i<=s.length()-k;i++){
+        for(int i=0;i+k<=s.length();i++){
             
                 gg.insert(s.substr(i,k));
               
