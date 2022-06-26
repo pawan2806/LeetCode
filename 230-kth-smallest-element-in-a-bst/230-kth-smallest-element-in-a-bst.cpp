@@ -16,12 +16,12 @@ public:
         if(!root || i>k){
             return;
         }
-        kthSmallest(root->left, k);
+        helper(root->left, k);
         if(i==k){
             gg=root->val;
         }
         i++;
-        kthSmallest(root->right, k);
+        helper(root->right, k);
         
     }
     int kthSmallest(TreeNode* root, int k) {
