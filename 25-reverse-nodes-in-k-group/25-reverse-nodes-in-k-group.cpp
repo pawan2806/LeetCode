@@ -39,12 +39,8 @@ public:
         else 
             return curr;
         newhead->next=NULL;
-
         newhead=rev(curr);
         curr->next=reverseKGroup(nextnode, k);
-        
         return newhead;
-        
-        
     }
 };
