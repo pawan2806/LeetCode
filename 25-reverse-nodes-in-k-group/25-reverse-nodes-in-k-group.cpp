@@ -29,17 +29,15 @@ public:
         ListNode* newhead=head;
         for(;i<k-1;i++){
             if(!newhead){
-                break;
+                return curr;
             }
             newhead=newhead->next;
         }
-        if(i<k-1){
-            return head;
-        }
-        if(!newhead){
+        ListNode* nextnode=NULL;
+        if(newhead)
+            nextnode=newhead->next;
+        else 
             return curr;
-        }
-        ListNode* nextnode=newhead->next;
         newhead->next=NULL;
 
         newhead=rev(curr);
