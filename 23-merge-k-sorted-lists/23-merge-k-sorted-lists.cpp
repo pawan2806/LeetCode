@@ -1,11 +1,11 @@
 /**
  *Definition for singly-linked list.
  *struct ListNode {
- *  int val;
- *  ListNode * next;
- *  ListNode() : val(0), next(nullptr) {}
- *  ListNode(int x) : val(x), next(nullptr) {}
- *  ListNode(int x, ListNode *next) : val(x), next(next) {}
+ *int val;
+ *ListNode * next;
+ *ListNode() : val(0), next(nullptr) {}
+ *ListNode(int x) : val(x), next(nullptr) {}
+ *ListNode(int x, ListNode *next) : val(x), next(next) {}
  *};
  */
 class Solution
@@ -14,14 +14,14 @@ class Solution
         typedef pair<int, ListNode*> pd;
     struct myComp
     {
-        constexpr bool operator()(pair<int, ListNode*>
+        bool operator()(pair<int, ListNode*>
             const &a, pair<int, ListNode*>
             const &b)
-        const noexcept
         {
             return a.first > b.first;
         }
     };
+
     ListNode* mergeKLists(vector<ListNode*> &lists)
     {
         int k = lists.size();
@@ -49,38 +49,5 @@ class Solution
             }
         }
         return newlinkedlist->next->next;
-
-       	//         while(1){
-       	//             ListNode* maxNode=new ListNode(INT_MAX);
-       	//             bool got=false;
-       	//             int i=0, maxNodepos=-1;
-       	//             for(i=0; i < k; i++){
-       	//                 if(lists[i] && maxNode->val > lists[i]->val){
-       	//                     got=true;
-       	//                     maxNode=lists[i];
-       	//                     maxNodepos=i;
-       	//                 }
-       	//             }
-
-       	//             if(got==false){
-       	//                 break;
-       	//             }else{
-       	//                	// cout<<maxNode->val<<" ";
-       	//                 if(newlinkedlist==nullptr){
-       	//                     newlinkedlist=maxNode;
-       	//                     newpointer=maxNode;
-       	//                     maxNode=maxNode->next;
-       	//                     lists[maxNodepos]=maxNode;
-       	//                 }else{
-       	//                     newpointer->next=maxNode;
-       	//                     newpointer=newpointer->next;
-       	//                     maxNode=maxNode->next;
-       	//                     lists[maxNodepos]=maxNode;
-       	//                 }
-       	//             }
-
-       	//         }
-
-        return newlinkedlist;
     }
 };
