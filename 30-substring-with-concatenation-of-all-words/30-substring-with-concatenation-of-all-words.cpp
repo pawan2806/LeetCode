@@ -21,20 +21,13 @@ class Solution
                 for (t = 0; t < n; t++)
                 {
                     string str = s.substr(i + t *m, m);
-                    if (mp.count(str) == 0)
+                    if (mp[str] > 0)
                     {
-                        break;
+                        mp[str]--;
                     }
                     else
                     {
-                        if (mp[str] != 0)
-                        {
-                            mp[str]--;
-                        }
-                        else
-                        {
-                            break;
-                        }
+                        break;
                     }
                 }
                 if (t == n)
