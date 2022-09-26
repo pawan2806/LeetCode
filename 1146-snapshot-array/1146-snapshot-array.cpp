@@ -1,13 +1,16 @@
 class SnapshotArray {
     unordered_map<int,unordered_map<int,int>> hmap;
+    vector<int> latestsnap;
     int snapid=0;
 public:
     SnapshotArray(int length) {
-        
+        vector<int> temp(length+1,0);
+        latestsnap=temp;
     }
     
     void set(int index, int val) {
         hmap[snapid][index]=val;
+        
         
     }
     
