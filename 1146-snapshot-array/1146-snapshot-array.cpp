@@ -1,64 +1,31 @@
-typedef pair<int, int> pii;
-
-class SnapshotArray
-{
-
-    private:
-
-        int n = 0;
-    vector<vector < pii>> m;
-    public:
-
-        SnapshotArray(int length)
-        {
-            m = vector<vector < pii>> (length, vector<pii> (1,
-            {
-                0,
-                0 }));	// every element is 0 in beginning
-        }
-
-    void set(int index, int val)
-    {
-
-        int x = m[index].size();
-
-        if (m[index][x - 1].second == n)	// if no new snaps were taken after last entry
-            m[index][x - 1].first = val;	// then update the last entry
-        else
-            m[index].push_back({ val,
-                n });	// else make a new entry with new snap_id
-
+class SnapshotArray {
+    unordered_map<int,unordered_map<int,int>> hmap;
+    int snapid=0;
+public:
+    SnapshotArray(int length) {
+        
     }
-
-    int snap()
-    {
-        n++;
-        return n - 1;
+    
+    void set(int index, int val) {
+        hmap[snapid][index]=val;
+        
     }
-
-    int get(int index, int snap_id)
-    {
-
-        int l = 0, h = m[index].size() - 1;
-
-        while (l <= h)
+    
+    int snap() {
+        snapid++;
+        return snapid-1;
+    }
+    
+    int get(int index, int snap_id) {
+        
+        for(int i=snap_id;i>=0;i--)
         {
-        	// binary search for first index with snap_id equal or lower
-
-            int mid = l + (h - l) / 2;
-
-            if (m[index][mid].second == snap_id)
-                return m[index][mid].first;
-            else if (m[index][mid].second > snap_id)
-                h = mid - 1;
-            else
-                l = mid + 1;
+            if(hmap[i].count(index)==1)
+                return hmap[i][index];
         }
-
-        return m[index][h].first;
+        return 0;
     }
 };
-
 /**
  *Your SnapshotArray object will be instantiated and called as such:
  *SnapshotArray* obj = new SnapshotArray(length);
